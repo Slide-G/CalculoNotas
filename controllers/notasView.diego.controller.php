@@ -53,8 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         return true;
     }
+
     // Función para procesar notas y calcular los resultados
-    function processGrades($data) {
+    function processGrades($data)
+    {
         $result = [];
         // Inicializamos contadores y variables
         $approvedStudents = [];
@@ -102,6 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $result[$moduleName]['num_suspensos']++;
                 }
             }
+            // Calcula la nota media del módulo
+            $result[$moduleName]['nota_media'] = $totalScore / $totalGrades;
+        }
 
-
-
+        // Devuelve el resultado completo
+        return $result;
+    }
+}
+?>
