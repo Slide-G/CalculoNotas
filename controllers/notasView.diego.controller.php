@@ -70,7 +70,9 @@ function processGrades($data) {
             $maxGrade = max($grades);
             $minGrade = min($grades);
             $avgGrade = array_sum($grades) / count($grades);
-            $fails = count(array_filter($grades, fn($grade) => $grade < 5));
+            $fails = count(array_filter($grades, function ($grade) {
+                return $grade < 5;
+            }));
 
             if ($maxGrade > $result[$moduleName]['nota_max']) {
                 $result[$moduleName]['nota_max'] = $maxGrade;

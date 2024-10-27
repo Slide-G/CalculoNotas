@@ -8,7 +8,6 @@
 <body class="container mt-5">
 <h1 class="mb-4">Procesador de Notas</h1>
 
-<!-- Formulario de entrada -->
 <form method="POST" action="controller.php">
     <div class="form-group">
         <label for="jsonInput">Ingresa el JSON:</label>
@@ -17,7 +16,6 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
-<!-- Mostrar errores si existen -->
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger mt-3">
         <ul>
@@ -28,7 +26,6 @@
     </div>
 <?php endif; ?>
 
-<!-- Mostrar resultados si no hay errores -->
 <?php if ($resultado): ?>
     <h2 class="mt-4">Resultados</h2>
     <table class="table table-bordered mt-3">
@@ -59,6 +56,44 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Listado de alumnos en categorías -->
+    <h2 class="mt-4">Listados de Alumnos</h2>
+    <div class="alert alert-success mt-3">
+        <strong>Alumnos que han aprobado todo:</strong>
+        <ul>
+            <?php foreach (array_unique($approvedStudents) as $student): ?>
+                <li><?= $student ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="alert alert-warning mt-3">
+        <strong>Alumnos que han suspendido al menos una asignatura:</strong>
+        <ul>
+            <?php foreach (array_unique($failedStudents) as $student): ?>
+                <li><?= $student ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="alert alert-info mt-3">
+        <strong>Alumnos que promocionan:</strong>
+        <ul>
+            <?php foreach (array_unique($promotedStudents) as $student): ?>
+                <li><?= $student ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="alert alert-danger mt-3">
+        <strong>Alumnos que no promocionan:</strong>
+        <ul>
+            <?php foreach (array_unique($notPromotedStudents) as $student): ?>
+                <li><?= $student ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 <?php endif; ?>
 </body>
 </html>
